@@ -72,6 +72,15 @@ class CustomModel(TFModelV2):
     def value_function(self):
         return self.model.value_function()
 
+def trial_name_string(trial):
+    """
+    Args:
+        trial (Trial): A generated trial object.
+
+    Returns:
+        trial_name (str): String representation of Trial.
+    """
+    return str(trial)
 
 if __name__ == "__main__":
     # Can also register the env creator function explicitly with:
@@ -83,6 +92,8 @@ if __name__ == "__main__":
         stop={
             "timesteps_total": 10000,
         },
+        name="trial-name-string",
+        trial_name_creator=trial_name_string,
         config={
             "env": SimpleCorridor,  # or "corridor" if registered above
             # "model": {
